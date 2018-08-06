@@ -1,0 +1,19 @@
+
+{% include 'pageheader.html' %}
+
+<form action="/api/user/check"> 
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input name="username" id="username" type='text'>
+    <button type="submit" class="btn btn-primary" name='action' value='login'>Login</button><br>
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+        <button type="submit" class="btn btn-primary" name='action' value='register'>Register New Key</button>
+    </nav>
+  </div>
+</form>
+
+
+
+
+
+{% include 'pagefooter.html' %}
