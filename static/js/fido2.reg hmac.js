@@ -1,5 +1,5 @@
 function start() {
-    fetch('/api/register/begin', {
+    fetch('/api/registerhmac/begin', {
       method: 'POST',
     }).then(function(response) {
       if(response.ok) return response.arrayBuffer();
@@ -7,7 +7,7 @@ function start() {
     }).then(CBOR.decode).then(function(options) {
       return navigator.credentials.create(options);
     }).then(function(attestation) {
-      return fetch('/api/register/complete', {
+      return fetch('/api/registerhmac/complete', {
         method: 'POST',
         headers: {'Content-Type': 'application/cbor'},
         body: CBOR.encode({
