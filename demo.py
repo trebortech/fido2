@@ -21,7 +21,7 @@ import hashlib
 import os
 
 userdb = "users.db"
-defaultpin = "123456"
+defaultpin = "123456".encode("utf-8")
 
 
 def db_conn():
@@ -60,7 +60,6 @@ def get_userobj(username = None):
     credentials = get_credentials(userobj['userid'])
     userobj['credentials'] = credentials
     userobj['lencreds'] = len(credentials)
-
     return userobj
 
 
@@ -86,7 +85,7 @@ def db_update(userid, username, pinhash, pinrequired):
                         (userid, username, pinhash, pinrequired))
         db.commit()
     except Exception as e:
-        print "Error on insert"
+        print("Error on insert")
     return "User created"
 
 def db_check(username):

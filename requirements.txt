@@ -1,0 +1,13 @@
+cffi==1.15.0
+click==8.1.2
+cryptography==36.0.2
+fido2==0.9.3
+Flask==2.1.1
+importlib-metadata==4.11.3
+itsdangerous==2.1.2
+Jinja2==3.1.1
+MarkupSafe==2.1.1
+pycparser==2.21
+six==1.16.0
+Werkzeug==2.1.1
+zipp==3.7.0

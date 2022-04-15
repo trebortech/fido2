@@ -3,44 +3,14 @@
 
 <center>
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="/img/yk.png" alt="Yubikey Plug in">
+  <img class="card-img-top" src="/img/yk.png" onclick="start();" alt="Yubikey Plug in">
   <div class="card-body">
     <h5 class="card-title">Register a credential</h5>
     <p class="card-text">Touch your YubiKey now....</p>
   </div>
 </div>
 </center>
-
-
-<script>
-  fetch('/api/register/begin', {
-    method: 'POST'
-  }).then(function(response) {
-    return response.arrayBuffer();
-  }).then(function(data) {
-    return CBOR.decode(data);
-  }).then(function(options) {
-    navigator.credentials.create(options).then(function(attestation) {
-      console.log(attestation.response);
-      console.log(CBOR.encode(attestation.response));
-      fetch('/api/register/complete', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/cbor'},
-        body: CBOR.encode({
-          "attestationObject": new Uint8Array(attestation.response.attestationObject),
-          "clientDataJSON": new Uint8Array(attestation.response.clientDataJSON),
-        })
-      }).then(function() {
-        alert('Registration successful. :)');
-        window.location = '/';
-      });
-    }, function(reason) {
-      console.log('Failed', reason);
-      alert(reason);
-      window.location = '/';
-    });
-  });
-</script>
+<script src="/js/fido2.reg.js"></script>
 
 <nav class="navbar fixed-bottom navbar-light bg-light">
   <a class="btn btn-primary" href="/" role="button">Home</a>
